@@ -56,7 +56,7 @@ function DashboardPage() {
         </p>
         <Button asChild variant="brand" size="lg" className="mt-8">
           <Link to="/take-a-test">
-            Begin a Test <ArrowRight className="ml-1 h-4 w-4" />
+            Take a Test <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </Button>
       </section>
