@@ -15,6 +15,9 @@ import { Route as HistoryRouteImport } from './routes/history'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RankingsRouteImport } from './routes/rankings'
 import { Route as TakeATestRouteImport } from './routes/take-a-test'
+import { Route as TestAiVsAiRouteImport } from './routes/test.ai-vs-ai'
+import { Route as TestHumanVsAiRouteImport } from './routes/test.human-vs-ai'
+import { Route as TestHumanVsHumanRouteImport } from './routes/test.human-vs-human'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +49,21 @@ const TakeATestRoute = TakeATestRouteImport.update({
   path: '/take-a-test',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestAiVsAiRoute = TestAiVsAiRouteImport.update({
+  id: '/test/ai-vs-ai',
+  path: '/test/ai-vs-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestHumanVsAiRoute = TestHumanVsAiRouteImport.update({
+  id: '/test/human-vs-ai',
+  path: '/test/human-vs-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestHumanVsHumanRoute = TestHumanVsHumanRouteImport.update({
+  id: '/test/human-vs-human',
+  path: '/test/human-vs-human',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +72,9 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/rankings': typeof RankingsRoute
   '/take-a-test': typeof TakeATestRoute
+  '/test/ai-vs-ai': typeof TestAiVsAiRoute
+  '/test/human-vs-ai': typeof TestHumanVsAiRoute
+  '/test/human-vs-human': typeof TestHumanVsHumanRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +83,9 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/rankings': typeof RankingsRoute
   '/take-a-test': typeof TakeATestRoute
+  '/test/ai-vs-ai': typeof TestAiVsAiRoute
+  '/test/human-vs-ai': typeof TestHumanVsAiRoute
+  '/test/human-vs-human': typeof TestHumanVsHumanRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,14 +95,33 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/rankings': typeof RankingsRoute
   '/take-a-test': typeof TakeATestRoute
+  '/test/ai-vs-ai': typeof TestAiVsAiRoute
+  '/test/human-vs-ai': typeof TestHumanVsAiRoute
+  '/test/human-vs-human': typeof TestHumanVsHumanRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/dashboard' | '/history' | '/profile' | '/rankings' | '/take-a-test'
+    | '/'
+    | '/dashboard'
+    | '/history'
+    | '/profile'
+    | '/rankings'
+    | '/take-a-test'
+    | '/test/ai-vs-ai'
+    | '/test/human-vs-ai'
+    | '/test/human-vs-human'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/dashboard' | '/history' | '/profile' | '/rankings' | '/take-a-test'
+    | '/'
+    | '/dashboard'
+    | '/history'
+    | '/profile'
+    | '/rankings'
+    | '/take-a-test'
+    | '/test/ai-vs-ai'
+    | '/test/human-vs-ai'
+    | '/test/human-vs-human'
   id:
     | '__root__'
     | '/'
@@ -87,6 +130,9 @@ export interface FileRouteTypes {
     | '/profile'
     | '/rankings'
     | '/take-a-test'
+    | '/test/ai-vs-ai'
+    | '/test/human-vs-ai'
+    | '/test/human-vs-human'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,6 +142,9 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   RankingsRoute: typeof RankingsRoute
   TakeATestRoute: typeof TakeATestRoute
+  TestAiVsAiRoute: typeof TestAiVsAiRoute
+  TestHumanVsAiRoute: typeof TestHumanVsAiRoute
+  TestHumanVsHumanRoute: typeof TestHumanVsHumanRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -142,6 +191,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TakeATestRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/test/ai-vs-ai': {
+      id: '/test/ai-vs-ai'
+      path: '/test/ai-vs-ai'
+      fullPath: '/test/ai-vs-ai'
+      preLoaderRoute: typeof TestAiVsAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test/human-vs-ai': {
+      id: '/test/human-vs-ai'
+      path: '/test/human-vs-ai'
+      fullPath: '/test/human-vs-ai'
+      preLoaderRoute: typeof TestHumanVsAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test/human-vs-human': {
+      id: '/test/human-vs-human'
+      path: '/test/human-vs-human'
+      fullPath: '/test/human-vs-human'
+      preLoaderRoute: typeof TestHumanVsHumanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -152,6 +222,9 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   RankingsRoute: RankingsRoute,
   TakeATestRoute: TakeATestRoute,
+  TestAiVsAiRoute: TestAiVsAiRoute,
+  TestHumanVsAiRoute: TestHumanVsAiRoute,
+  TestHumanVsHumanRoute: TestHumanVsHumanRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
