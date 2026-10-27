@@ -24,6 +24,7 @@ const MODES = [
     title: "Human vs AI Test",
     description: "Answer questions and compare your performance against an AI model.",
     to: "/test/human-vs-ai",
+    mode: "human-vs-ai",
     cta: "Start Human vs AI",
   },
   {
@@ -31,6 +32,7 @@ const MODES = [
     title: "AI vs AI Test",
     description: "Submit prompts to two AI models, compare their responses, and evaluate which response is better.",
     to: "/test/ai-vs-ai",
+    mode: "ai-vs-ai",
     cta: "Start AI vs AI",
   },
   {
@@ -38,6 +40,7 @@ const MODES = [
     title: "Human vs Human Test",
     description: "Challenge another person to a timed knowledge and reasoning test.",
     to: "/test/human-vs-human",
+    mode: "human-vs-human",
     cta: "Start Human vs Human",
   },
 ] as const;
@@ -73,7 +76,7 @@ function DashboardPage() {
               description={m.description}
               footer={
                 <Button asChild variant="outline" className="w-full">
-                  <Link to={m.to}>
+                  <Link to="/take-a-test" search={{ mode: m.mode }}>
                     {m.cta} <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
                 </Button>

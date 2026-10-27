@@ -14,6 +14,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RankingsRouteImport } from './routes/rankings'
+import { Route as SetupSummaryRouteImport } from './routes/setup-summary'
 import { Route as TakeATestRouteImport } from './routes/take-a-test'
 import { Route as TestAiVsAiRouteImport } from './routes/test.ai-vs-ai'
 import { Route as TestHumanVsAiRouteImport } from './routes/test.human-vs-ai'
@@ -44,6 +45,11 @@ const RankingsRoute = RankingsRouteImport.update({
   path: '/rankings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetupSummaryRoute = SetupSummaryRouteImport.update({
+  id: '/setup-summary',
+  path: '/setup-summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TakeATestRoute = TakeATestRouteImport.update({
   id: '/take-a-test',
   path: '/take-a-test',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/history': typeof HistoryRoute
   '/profile': typeof ProfileRoute
   '/rankings': typeof RankingsRoute
+  '/setup-summary': typeof SetupSummaryRoute
   '/take-a-test': typeof TakeATestRoute
   '/test/ai-vs-ai': typeof TestAiVsAiRoute
   '/test/human-vs-ai': typeof TestHumanVsAiRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/history': typeof HistoryRoute
   '/profile': typeof ProfileRoute
   '/rankings': typeof RankingsRoute
+  '/setup-summary': typeof SetupSummaryRoute
   '/take-a-test': typeof TakeATestRoute
   '/test/ai-vs-ai': typeof TestAiVsAiRoute
   '/test/human-vs-ai': typeof TestHumanVsAiRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/history': typeof HistoryRoute
   '/profile': typeof ProfileRoute
   '/rankings': typeof RankingsRoute
+  '/setup-summary': typeof SetupSummaryRoute
   '/take-a-test': typeof TakeATestRoute
   '/test/ai-vs-ai': typeof TestAiVsAiRoute
   '/test/human-vs-ai': typeof TestHumanVsAiRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/profile'
     | '/rankings'
+    | '/setup-summary'
     | '/take-a-test'
     | '/test/ai-vs-ai'
     | '/test/human-vs-ai'
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/profile'
     | '/rankings'
+    | '/setup-summary'
     | '/take-a-test'
     | '/test/ai-vs-ai'
     | '/test/human-vs-ai'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/profile'
     | '/rankings'
+    | '/setup-summary'
     | '/take-a-test'
     | '/test/ai-vs-ai'
     | '/test/human-vs-ai'
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   HistoryRoute: typeof HistoryRoute
   ProfileRoute: typeof ProfileRoute
   RankingsRoute: typeof RankingsRoute
+  SetupSummaryRoute: typeof SetupSummaryRoute
   TakeATestRoute: typeof TakeATestRoute
   TestAiVsAiRoute: typeof TestAiVsAiRoute
   TestHumanVsAiRoute: typeof TestHumanVsAiRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RankingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/setup-summary': {
+      id: '/setup-summary'
+      path: '/setup-summary'
+      fullPath: '/setup-summary'
+      preLoaderRoute: typeof SetupSummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/take-a-test': {
       id: '/take-a-test'
       path: '/take-a-test'
@@ -221,6 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   HistoryRoute: HistoryRoute,
   ProfileRoute: ProfileRoute,
   RankingsRoute: RankingsRoute,
+  SetupSummaryRoute: SetupSummaryRoute,
   TakeATestRoute: TakeATestRoute,
   TestAiVsAiRoute: TestAiVsAiRoute,
   TestHumanVsAiRoute: TestHumanVsAiRoute,
