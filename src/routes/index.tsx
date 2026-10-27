@@ -61,7 +61,7 @@ function HomePage() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild variant="brand" size="lg">
-              <Link to="/take-a-test">
+              <Link to="/dashboard">
                 Get Started <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </Button>
