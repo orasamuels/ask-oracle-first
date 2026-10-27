@@ -10,7 +10,6 @@ import { SetupSummary } from "@/components/test-setup/SetupSummary";
 import {
   AI_MODELS,
   AI_MODELS_CONNECTED,
-  DIFFICULTIES,
   MODES,
   ROUND_OPTIONS,
   modeTitle,
@@ -72,7 +71,9 @@ function TakeATestPage() {
   const onContinue = () => {
     const errs = validateSetup(s);
     setErrors(errs);
-    if (errs.length === 0) navigate({ to: "/setup-summary", search: s });
+    if (errs.length > 0) return;
+    if (s.mode === "human-vs-ai") navigate({ to: "/test/human-vs-ai", search: { category: s.category, rounds: s.rounds } });
+    else navigate({ to: "/setup-summary", search: s });
   };
 
   const usedOtherModel = (other?: string) =>
@@ -106,9 +107,6 @@ function TakeATestPage() {
             </>
           ) : (
             <CategorySelector value={s.category} onChange={(c) => update({ category: c })} />
-          )}
-          {s.mode === "human-vs-ai" && (
-            <OptionGroup label="Difficulty" options={DIFFICULTIES.map((d) => ({ value: d, label: d }))} value={s.difficulty} onChange={(d) => update({ difficulty: d })} />
           )}
           <OptionGroup
             label="Rounds"

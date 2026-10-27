@@ -3,9 +3,9 @@ import { CATEGORIES, validateSetup } from "@/lib/test-setup";
 
 describe("test setup rules", () => {
   it("has twelve categories", () => expect(CATEGORIES).toHaveLength(12));
-  it("human vs AI needs category, difficulty and rounds", () => {
-    expect(validateSetup({ mode: "human-vs-ai", category: "Physics", rounds: 2 })).toContain("Choose a difficulty.");
-    expect(validateSetup({ mode: "human-vs-ai", category: "Physics", difficulty: "Hard", rounds: 2 })).toEqual([]);
+  it("human vs AI needs only category and rounds", () => {
+    expect(validateSetup({ mode: "human-vs-ai", rounds: 2 })).toContain("Choose a category.");
+    expect(validateSetup({ mode: "human-vs-ai", category: "Physics", rounds: 2 })).toEqual([]);
   });
   it("human vs human needs category and rounds only", () => {
     expect(validateSetup({ mode: "human-vs-human", category: "History", rounds: 1 })).toEqual([]);
