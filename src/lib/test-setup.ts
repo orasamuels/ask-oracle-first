@@ -15,7 +15,6 @@ export const CATEGORIES = [
   "General Knowledge",
 ] as const;
 
-export const DIFFICULTIES = ["Easy", "Medium", "Hard"] as const;
 export const ROUND_OPTIONS = [1, 2, 3] as const;
 
 export type TestMode = "human-vs-ai" | "ai-vs-ai" | "human-vs-human";
@@ -38,7 +37,6 @@ export const AI_MODELS_CONNECTED = false;
 export const setupSearchSchema = z.object({
   mode: z.enum(["human-vs-ai", "ai-vs-ai", "human-vs-human"]).optional().catch(undefined),
   category: z.enum(CATEGORIES).optional().catch(undefined),
-  difficulty: z.enum(DIFFICULTIES).optional().catch(undefined),
   rounds: z.coerce.number().int().min(1).max(3).optional().catch(undefined),
   modelA: z.string().optional().catch(undefined),
   modelB: z.string().optional().catch(undefined),
@@ -52,7 +50,6 @@ export function validateSetup(s: SetupSearch): string[] {
   const errors: string[] = [];
   if (!s.mode) return ["Choose a testing mode."];
   if (s.mode !== "ai-vs-ai" && !s.category) errors.push("Choose a category.");
-  if (s.mode === "human-vs-ai" && !s.difficulty) errors.push("Choose a difficulty.");
   if (s.mode === "ai-vs-ai") {
     if (!s.modelA || !modelIds.includes(s.modelA)) errors.push("Choose the first AI model.");
     if (!s.modelB || !modelIds.includes(s.modelB)) errors.push("Choose the second AI model.");

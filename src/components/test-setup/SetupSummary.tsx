@@ -7,7 +7,6 @@ export function SetupSummary({ s }: { s: SetupSearch }) {
     rows.push(["Rounds", s.rounds ? `${s.rounds} (${s.rounds} prompt${s.rounds > 1 ? "s" : ""})` : "—"]);
   } else {
     rows.push(["Category", s.category ?? "—"]);
-    if (s.mode === "human-vs-ai") rows.push(["Difficulty", s.difficulty ?? "—"]);
     rows.push(["Rounds", s.rounds ? `${s.rounds} (${s.rounds * 10} questions)` : "—"]);
   }
   return (
