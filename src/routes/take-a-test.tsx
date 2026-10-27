@@ -114,7 +114,7 @@ function TakeATestPage() {
             label="Rounds"
             options={ROUND_OPTIONS.map((r) => ({ value: r, label: `${r} round${r > 1 ? "s" : ""}` }))}
             value={s.rounds}
-            onChange={(r) => update({ rounds: r })}
+            onChange={(r) => update({ rounds: Number(r) })}
           />
         </div>
 

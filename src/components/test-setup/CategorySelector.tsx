@@ -3,7 +3,7 @@ import { OptionGroup } from "./OptionGroup";
 
 type Category = (typeof CATEGORIES)[number];
 
-export function CategorySelector({ value, onChange }: { value?: Category; onChange: (c: Category) => void }) {
+export function CategorySelector({ value, onChange }: { value?: Category | undefined; onChange: (c: Category) => void }) {
   return (
     <OptionGroup
       label="Category"

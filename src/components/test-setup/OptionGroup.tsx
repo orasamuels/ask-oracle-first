@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils";
 interface Option<T> {
   value: T;
   label: string;
-  disabled?: boolean;
-  hint?: string;
+  disabled?: boolean | undefined;
+  hint?: string | undefined;
 }
 
 interface OptionGroupProps<T extends string | number> {
   label: string;
   options: Option<T>[];
-  value?: T;
+  value?: T | undefined;
   onChange: (v: T) => void;
   columns?: string;
 }
