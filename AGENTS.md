@@ -1,10 +1,4 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
+# AGENTS.md
+- Shared shell (Navbar/Footer) lives in src/components/layout and wraps <Outlet /> in __root — one place for site chrome.
+- Nav items are defined once in src/config/navigation.ts — navbar and footer stay in sync.
+- Unbuilt pages render the shared ComingSoon component — keeps placeholders consistent and clearly non-functional.
