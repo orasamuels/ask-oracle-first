@@ -1,4 +1,4 @@
 # Roadmap
 - [x] Human vs AI test engine (questions, timer, rounds, results)
-- [ ] Connect Supabase project "Turing Test Database"
-- [ ] Review new brief: AI_POWERED_TURING_TEST_-_COMPLETE_IMPLEMENTATION
+- [x] Supabase project connected (already linked to this project)
+- [ ] Complete-implementation brief (sign-in, saved results, AI models, multiplayer) — waiting for user go-ahead
