@@ -44,6 +44,8 @@ export const Route = createFileRoute("/test/human-vs-ai")({
   component: HumanVsAiPage,
 });
 
+type ActInput = QuizAction extends infer A ? (A extends QuizAction ? Omit<A, "now"> : never) : never;
+
 const STORAGE_KEY = "hva-test-state";
 const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
 
@@ -99,7 +101,7 @@ function Quiz({ initial }: { initial: QuizState }) {
     return () => window.removeEventListener("beforeunload", h);
   }, [s.phase]);
 
-  const act = (a: Omit<QuizAction, "now">) => dispatch({ ...a, now: Date.now() } as QuizAction);
+  const act = (a: ActInput) => dispatch({ ...a, now: Date.now() } as QuizAction);
   const restart = () => {
     sessionStorage.removeItem(STORAGE_KEY);
     navigate({ to: "/take-a-test", search: { mode: "human-vs-ai" } });
@@ -120,7 +122,7 @@ function Quiz({ initial }: { initial: QuizState }) {
   );
 }
 
-function QuestionView({ s, now, act }: { s: QuizState; now: number; act: (a: Omit<QuizAction, "now">) => void }) {
+function QuestionView({ s, now, act }: { s: QuizState; now: number; act: (a: ActInput) => void }) {
   const q = currentQuestion(s);
   const rec = s.phase === "locked" ? s.answers[s.round]![s.index] : undefined;
   const secs = Math.max(0, Math.ceil((s.deadline - now) / 1000));
