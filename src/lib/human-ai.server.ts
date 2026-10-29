@@ -1,5 +1,5 @@
 import { currentQuestion, quizReducer, startQuiz, type QuizState } from './quiz-engine';
-import { participantScore, roundWinner, type HumanAiView, type RoundResult } from './human-ai-view';
+import { participantScore, roundWinner, type HumanAiView, type RoundResult, type ReviewItem } from './human-ai-view';
 export interface AiAnswer { choice: number | null; status: 'pending' | 'success' | 'failed'; error: string | null }
 export interface StoredQuiz { quiz: QuizState; ai: Record<string, AiAnswer>; model: string }
 export const questionKey = (q: QuizState) => `${q.round}:${q.index}`;
@@ -14,7 +14,7 @@ export function publicQuiz(id: string, version: number, state: StoredQuiz): Huma
     if (!completed) break;
     const questions = s.rounds[r] ?? [];
     const records = s.answers[r] ?? [];
-    const review = questions.map((q, i) => ({ prompt: q.prompt, options: [...q.options], answer: q.answer, explanation: q.explanation ?? null, human: records[i]?.choice ?? null, ai: state.ai[`${r}:${i}`]?.choice ?? null, aiError: state.ai[`${r}:${i}`]?.error ?? 'AI answer unavailable' }));
+    const review: ReviewItem[] = questions.map((q, i) => ({ prompt: q.prompt, options: [...q.options], answer: q.answer, explanation: q.explanation ?? null, human: records[i]?.choice ?? null, ai: state.ai[`${r}:${i}`]?.choice ?? null, aiError: state.ai[`${r}:${i}`]?.error ?? 'AI answer unavailable' }));
     // A genuine successful answer has no error.
     review.forEach((item, i) => { if (state.ai[`${r}:${i}`]?.status === 'success') item.aiError = null; });
     const human = participantScore(review.map(q => ({ choice: q.human, answer: q.answer })));
