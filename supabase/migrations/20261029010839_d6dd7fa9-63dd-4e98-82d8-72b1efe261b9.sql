@@ -1,0 +1,1 @@
+CREATE POLICY human_ai_no_direct_access ON public.human_ai_sessions FOR ALL TO anon, authenticated USING (false) WITH CHECK (false);
