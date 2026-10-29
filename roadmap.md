@@ -1,4 +1,6 @@
 # Roadmap
 - [x] Human vs AI test engine (questions, timer, rounds, results)
 - [x] Supabase project connected (already linked to this project)
-- [ ] Complete-implementation brief (sign-in, saved results, AI models, multiplayer) — waiting for user go-ahead
+- [ ] Human vs AI priority milestone: real opponent, private saved sessions, refresh recovery, scoring and verification
+- [ ] GitHub synchronization verification — platform-managed Git only
+- [ ] Remaining master-brief features — paused until explicitly authorized
